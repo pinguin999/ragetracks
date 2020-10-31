@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
 ###################################################################
-## this module contains the menu class, which is used for the main-
-## and sub menus
+# this module contains the menu class, which is used for the main-
+# and sub menus
 ###################################################################
 
 from direct.gui.OnscreenImage import OnscreenImage
@@ -10,17 +9,19 @@ from direct.gui.OnscreenImage import OnscreenImage
 # -----------------------------------------------------------------
 # -----------------------------------------------------------------
 
+
 class Menu(object):
     '''
     '''
+
     def __init__(self):
         '''
         '''
         self.selection = 0
         self.options = []
-        self.imagesDB = {#{name:[[unselected, selected],pos,scale]}
-        "NewGame":[["data/sprites/menu/newGame.png","data/sprites/menu/newGameSelected.png"],(0,0,0),(.6, 1, .06)]  
-        }       
+        self.imagesDB = {  # {name:[[unselected, selected],pos,scale]}
+            "NewGame": [["data/sprites/menu/newGame.png", "data/sprites/menu/newGameSelected.png"], (0, 0, 0), (.6, 1, .06)]
+        }
         self.selected = 0
 
     # -----------------------------------------------------------------
@@ -28,8 +29,8 @@ class Menu(object):
     def addOption(self, name, function):
         '''
         '''
-        image = OnscreenImage(self.imagesDB[name][0][0],self.imagesDB[name][1], self.imagesDB[name][2])
-        imageSelected = OnscreenImage(self.imagesDB[name][0][1],self.imagesDB[name][1], self.imagesDB[name][2])
+        image = OnscreenImage(self.imagesDB[name][0][0], self.imagesDB[name][1], self.imagesDB[name][2])
+        imageSelected = OnscreenImage(self.imagesDB[name][0][1], self.imagesDB[name][1], self.imagesDB[name][2])
         self.options.append((name, function, image, imageSelected))
 
     # -----------------------------------------------------------------
@@ -65,7 +66,7 @@ class Menu(object):
         old = self.selected
         self.selected -= 1
         if self.selected == -1:
-            self.selected = len(self.options)-1
+            self.selected = len(self.options) - 1
 
         if old < len(self.texts):
             self.texts[old].setFg(self.color_deselected)
@@ -86,7 +87,7 @@ class Menu(object):
         old = self.selected
         self.selected = i
         if self.selected == -1:
-            self.selected = len(self.options)-1
+            self.selected = len(self.options) - 1
 
         if self.selected == len(self.options):
             self.selected = 0

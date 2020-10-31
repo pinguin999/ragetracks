@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
 ##############################################################
-## this module contains a class to save and load the
-## application's settings and configuration
+# this module contains a class to save and load the
+# application's settings and configuration
 ##############################################################
 
 from configobj import ConfigObj
@@ -11,23 +10,25 @@ from direct.directnotify.DirectNotify import DirectNotify
 # ---------------------------------------------------------
 # ---------------------------------------------------------
 
+
 class Settings(object):
     '''
     This class represents a joystick and holds the pygame data
     '''
+
     def __init__(self):
         '''
         this class is able to load and save the application's settings
         '''
         self._notify = DirectNotify().newCategory("Settings")
-        self._notify.info("New Settings-Object created: %s" %(self))
+        self._notify.info("New Settings-Object created: %s" % (self))
         self.width = 800
         self.height = 600
         self.antialias = False
 
         self.fullscreen = False
-        self._input_settings = {"keyboard" : {},
-                                "joysticks" : {}
+        self._input_settings = {"keyboard": {},
+                                "joysticks": {}
                                 }
 
     # ---------------------------------------------------------
@@ -39,15 +40,14 @@ class Settings(object):
         config.filename = filename
 
         config["application"] = {}
-        #config["application"]["resolution"] = "%dx%d"%(self.width, self.height)
+        # config["application"]["resolution"] = "%dx%d"%(self.width, self.height)
         config["application"]["resolution"] = [str(self.width), str(self.height)]
         config["application"]["fullscreen"] = str(int(self.fullscreen))
         config["application"]["antialias"] = str(int(self.antialias))
-    
+
         config["joysticks"] = {}
         config["keyboard"] = {}
         config.write()
-
 
     # ---------------------------------------------------------
 
@@ -75,19 +75,14 @@ class Settings(object):
     # ---------------------------------------------------------
 
 
-
 # ---------------------------------------------------------
 # ---------------------------------------------------------
 # ---------------------------------------------------------
-
-
-
-
 
 
 if __name__ == "__main__":
     settings = Settings()
-    #settings.saveSettings("user/config.ini")
+    # settings.saveSettings("user/config.ini")
     settings.loadSettings("user/config.ini")
-    print settings.fullscreen
-    print settings.width, settings.height
+    print((settings.fullscreen))
+    print((settings.width, settings.height))

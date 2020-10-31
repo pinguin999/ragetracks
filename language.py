@@ -1,15 +1,16 @@
-# -*- coding: utf-8 -*-
 ###########################################################
-## this module loads a language file
+# this module loads a language file
 ###########################################################
 
-import os, os.path
+import os
+import os.path
 from configobj import ConfigObj
 
 # ---------------------------------------------------------
 # ---------------------------------------------------------
 # ---------------------------------------------------------
 # ---------------------------------------------------------
+
 
 def getAvailableLanguages():
     '''
@@ -32,21 +33,22 @@ class Language(object):
     '''
     this class opens a language file
     '''
+
     def __init__(self, language):
         '''
         @param language: (str) name of the language file (without extension)
         '''
         # check if the language is a string
         if type(language) != str:
-            raise typeError("language has to be of type 'str'")
+            raise TypeError("language has to be of type 'str'")
 
         # okay, save some details
         self.language = language
-        filename = "data/language/"+language+".lang"
+        filename = "data/language/" + language + ".lang"
 
         # check if the file is available
         if not os.path.isfile(filename):
-            raise ioError("language file could not be found")
+            raise IOError("language file could not be found")
 
         # read the words out of the file
         self.words = ConfigObj(filename)
@@ -72,7 +74,7 @@ class Language(object):
         '''
         represents the class for printing
         '''
-        return "Language("+self.language+")"
+        return "Language(" + self.language + ")"
 
     # ---------------------------------------------------------
 
@@ -93,9 +95,9 @@ class Language(object):
 
 # Test the module
 if __name__ == "__main__":
-    print "Avalilable languages:", getAvailableLanguages()
+    print(("Avalilable languages:", getAvailableLanguages()))
 
     lang = Language("german")
-    print "Chosen language: ", lang.getLanguageName()
-    print "\n"
-    print "new_game in this language:", lang["menu"]["new_game"]
+    print(("Chosen language: ", lang.getLanguageName()))
+    print("\n")
+    print(("new_game in this language:", lang["menu"]["new_game"]))

@@ -1,32 +1,32 @@
-# -*- coding: utf-8 -*-
 ###################################################################
-## this module is the main one, which contains the game class
+# this module is the main one, which contains the game class
 ###################################################################
 
 from direct.showbase.ShowBase import ShowBase
-from pandac.PandaModules import * #Load all PandaModules
-import os.path
+from pandac.PandaModules import Texture, PNMImage
 # -----------------------------------------------------------------
 # -----------------------------------------------------------------
 # -----------------------------------------------------------------
+
 
 class Game(ShowBase):
     '''
     '''
+
     def __init__(self, *args):
         '''
         '''
         ShowBase.__init__(self)
-        
-        base.setBackgroundColor(0,0,0)
-        
+
+        base.setBackgroundColor(0, 0, 0)
+
         self.mdl = self.loader.loadModel("data/models/vehicles/vehicle01.egg")
-        self.mdl.reparentTo(render)        
-        
-        #Add the Skybox
+        self.mdl.reparentTo(render)
+
+        # Add the Skybox
         self.skybox = self.loader.loadModel("data/models/skybox.egg")
         t = Texture()
-        #t.load(PNMImage("../skybox/skybox_tronic.png"))
+        # t.load(PNMImage("../skybox/skybox_tronic.png"))
         t.load(PNMImage("../skybox/test.png"))
         self.skybox.setTexture(t)
         self.skybox.setBin("background", 1)
@@ -38,6 +38,7 @@ class Game(ShowBase):
 # -----------------------------------------------------------------
 # -----------------------------------------------------------------
 # -----------------------------------------------------------------
+
 
 game = Game()
 game.run()

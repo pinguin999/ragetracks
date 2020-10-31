@@ -1,0 +1,15 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+flake8 = "*"
+Pmw = "*"
+
+[packages]
+panda3d = "*"
+pygame = "*"
+
+[requires]
+python_version = "3.8"

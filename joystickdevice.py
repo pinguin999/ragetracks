@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
 ##############################################################
-## this module wraps around the pygame joystick event handling
-## and holds the information about all connected joystick and
-## gamepad devices
+# this module wraps around the pygame joystick event handling
+# and holds the information about all connected joystick and
+# gamepad devices
 ##############################################################
 
 import pygame
@@ -12,20 +11,22 @@ from direct.directnotify.DirectNotify import DirectNotify
 # ---------------------------------------------------------
 # ---------------------------------------------------------
 
+
 class JoystickDevice(object):
     '''
     This class represents a joystick and holds the pygame data
     '''
+
     def __init__(self, joystick):
         '''
         @param joystick: the pygame joystick object
         '''
         self._notify = DirectNotify().newCategory("Input")
-        self._notify.info("New Joystick-Object created: %s" %(self))
+        self._notify.info("New Joystick-Object created: %s" % (self))
         # the pygame joysick object
         self.joystick = joystick
         self.joystick.init()
-        #print self.joystick.get_name()
+        # print self.joystick.get_name()
 
         # initialize the buttons axes, and cooliehats
         self.buttons = []
@@ -39,7 +40,7 @@ class JoystickDevice(object):
             self.buttons.append(False)
 
         for i in range(self.joystick.get_numhats()):
-            self.hats.append((0,0))
+            self.hats.append((0, 0))
 
     # ---------------------------------------------------------
 
@@ -73,10 +74,12 @@ class JoystickDevice(object):
 # ---------------------------------------------------------
 # ---------------------------------------------------------
 
+
 class JoystickDevices():
     '''
     This class holds all connected Joystick and gamepad devices
     '''
+
     def __init__(self):
         '''
         initializes the joysticks
@@ -121,7 +124,7 @@ class JoystickDevices():
         this function gets the events from pygame
         '''
         # catch all joystick events from pygame
-        for e in pygame.event.get([pygame.JOYAXISMOTION, pygame.JOYBUTTONUP, pygame.JOYBUTTONDOWN, pygame.JOYHATMOTION]): #pygame.JOYBALLMOTION,
+        for e in pygame.event.get([pygame.JOYAXISMOTION, pygame.JOYBUTTONUP, pygame.JOYBUTTONDOWN, pygame.JOYHATMOTION]):  # pygame.JOYBALLMOTION,
             # cooliehat moved / for gamepads without an analog stick
             if e.type == pygame.JOYHATMOTION:
                 self.joysticks[e.joy].buttons[e.hat] = e.value
